@@ -7,6 +7,7 @@
 
 **Requisitos técnicos:**
 - Node.js v18.17.0 (ou superior)
+- Express 4.21.1 (ou superior)
 - React 18.3.1 (ou superior)
 - PostgreSQL
 
