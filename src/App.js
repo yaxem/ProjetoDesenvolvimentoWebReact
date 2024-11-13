@@ -1,21 +1,19 @@
 import './App.css';
 import { useEffect, useState } from 'react';
 import axios from 'axios';
-const apiurl = "http://localhost:5000/filmes"
-
+const apiurl = "http://localhost:5000/filmes";
 
 function App() {
-
   const [filmes, setFilmes] = useState([]);
   const [nome, setNome] = useState("");
   const [desc, setDesc] = useState("");
-  const [poster, setPoster] = useState();
+  const [poster, setPoster] = useState("");
   const [data, setData] = useState("");
-
+  const [editId, setEditId] = useState(null); 
 
   useEffect(() => {
     fetchFilmes();
-  }, [])
+  }, []);
 
   const fetchFilmes = async () => {
     try {
@@ -24,65 +22,68 @@ function App() {
     } catch (e) {
       console.error(e);
     }
-  }
+  };
 
   const handleAddFilme = async () => {
-
     if (!nome || !desc || !data || !poster) return;
 
     try {
       const r = await axios.post(apiurl, { nome, desc, data, poster });
       setFilmes([...filmes, r.data]);
-      setNome("")
-      setDesc("")
-      setData("")
-      setPoster("")
+      clearForm();
+    } catch (e) {
+      console.error(e);
     }
-    catch (e) {
-      console.error(e)
-    }
+  };
 
-  }
-
-  const handleUpdateFilme = async (id) => {
-
-    if (!id || !nome || !desc || !data) return
+  const handleUpdateFilme = async () => {
+    if (!editId || !nome || !desc || !data || !poster) return;
 
     try {
-      const r = await axios.put(`${apiurl}/${id}`, { nome, desc, data, poster });
+      const r = await axios.put(`${apiurl}/${editId}`, { nome, desc, data, poster });
       setFilmes((prev) => {
-        return prev.map((filme) => {
-          if (filme.id === id) {
-            return {
-              ...filme,
-              nome: nome,
-              descricao: desc,
-              data: data,
-              poster: poster
-            };
-          }
-          return filme;
-        });
+        return prev.map((filme) => (filme.id === editId ? r.data : filme));
       });
-      setNome("")
-      setDesc("")
-      setData("")
-      setPoster("")
+      clearForm();
     } catch (e) {
-      console.error(e)
+      console.error(e);
     }
+  };
 
-  }
+  const handleEditClick = (filme) => {
+    setEditId(filme.id);
+    setNome(filme.nome);
+    setDesc(filme.descricao);
+    setData(filme.data);
+    setPoster(filme.poster);
+  };
 
   const handleDeleteFilme = async (id) => {
     if (!id) return;
     try {
-      setFilmes((prev) => { 
-        return prev.filter((filme) => filme.id !== id)
-      })
-      const r = await axios.delete(`${apiurl}/${id}`);
+      setFilmes((prev) => prev.filter((filme) => filme.id !== id));
+      
+      await axios.delete(`${apiurl}/${id}`);
+      
     } catch (error) {
       console.error("Erro", error);
+    }
+  };
+  
+
+  const clearForm = () => {
+    setNome("");
+    setDesc("");
+    setData("");
+    setPoster("");
+    setEditId(null);
+  };
+
+  const handleSubmit = () => {
+    if (editId) {
+      handleUpdateFilme();
+    } else {
+      handleAddFilme();
     }
   };
 
@@ -94,23 +95,29 @@ function App() {
         <input type="text" placeholder="Desc" value={desc} onChange={(e) => setDesc(e.target.value)} />
         <input type="url" placeholder="Poster" value={poster} onChange={(e) => setPoster(e.target.value)} />
         <input type="date" placeholder="Data" value={data} onChange={(e) => setData(e.target.value)} />
-        <button onClick={handleAddFilme}>Adicionar Filme</button>
+        <button onClick={handleSubmit}>
+          {editId ? "Atualizar Filme" : "Adicionar Filme"}
+        </button>
+        {editId && <button onClick={clearForm}>Cancelar</button>}
         <ul>
           {filmes.map((filme) => (
             <li key={filme.id} style={{ display: "flex", justifyContent: "center", alignItems: "center" }}>
               <div>
-                <img src={filme.poster} style={{ width: 100, height: 100}} />
+                <img src={filme.poster} alt="poster" style={{ width: 100, height: 100 }} />
               </div>
               {filme.id} - {filme.nome}
               <div>
-                <a onClick={() => { handleDeleteFilme(filme.id) }} style={{ marginLeft: "1rem", cursor: "pointer" }}>Deletar</a>
-                <a onClick={() => { handleUpdateFilme(filme.id) }} style={{ marginLeft: "1rem", cursor: "pointer" }}>Editar</a>
+                <a onClick={() => handleDeleteFilme(filme.id)} style={{ marginLeft: "1rem", cursor: "pointer" }}>
+                  Deletar
+                </a>
+                <a onClick={() => handleEditClick(filme)} style={{ marginLeft: "1rem", cursor: "pointer" }}>
+                  Editar
+                </a>
               </div>
             </li>
           ))}
         </ul>
       </div>
-
     </div>
   );
 }
