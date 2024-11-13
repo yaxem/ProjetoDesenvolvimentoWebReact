@@ -37,7 +37,7 @@
 ### Jogadores
 
 #### GET
-```/filmes`` obter todos os jogadores, e seus respectivos pagamentos
+```/filmes``` obter todos os jogadores, e seus respectivos pagamentos
 
 #### POST
 
