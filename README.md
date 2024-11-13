@@ -35,7 +35,7 @@ https://prod-ripcut-delivery.disney-plus.net/v1/variant/disney/3421528F5E3679CEA
 
 
 
-Create a Database and use this SQL
+Crie umaa Database e use esse SQL
 
 ```
 
