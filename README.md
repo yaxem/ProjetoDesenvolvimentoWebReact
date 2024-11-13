@@ -6,13 +6,12 @@
 - Ricardo Santolaia  
 
 **Requisitos técnicos:**
-- Java 21 (ou superior)
+- Node.js v18.17.0 (ou superior)
+- React 18.3.1 (ou superior)
 - PostgreSQL
-- Spring Boot 3 (Spring Web MVC, Spring Data JPA, Developer Tools, PostgreSQL Driver)
-- Maven 3.8 (ou superior)
 
 **Requisitos de software:**
-- Cada jogador possui um id, título, e-mail e data de nascimento. Segue exemplo de do corpo de uma requisição em json:
+- Cada filme possui um id, nome, descricao, data e o poster. Segue exemplo de do corpo de uma requisição em json:
 ```exemplo do jogador:
 {
   "nome": "claudio",
@@ -32,9 +31,24 @@
 }
 ```
 
+Create a Database and use this SQL
+
+```
+
+CREATE TABLE filmes (
+  id SERIAL PRIMARY KEY,
+  nome VARCHAR(255) NOT NULL,
+  descricao TEXT,
+  data DATE,
+  poster VARCHAR(255)
+);
+
+
+```
+
 ## Descrição da API
 
-### Jogadores
+### Filmes
 
 #### GET
 ```/filmes``` obter todos os jogadores, e seus respectivos pagamentos
