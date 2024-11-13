@@ -1,9 +1,9 @@
 # Documentação
 
 **Autores:**  
+- Gabriel Fontes Bay
 - Gustavo Burgath  
 - Ricardo Santolaia  
-- Gabriel Fontes Bay
 
 **Requisitos técnicos:**
 - Java 21 (ou superior)
