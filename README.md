@@ -11,14 +11,16 @@
 - PostgreSQL
 
 **Requisitos de software:**
-- Cada filme possui um id, nome, descricao, data e o poster. Segue exemplo de do corpo de uma requisição em json:
-```exemplo do jogador:
-{
-  "nome": "claudio",
-  "email": "claudio@gmail.com",
-  "datanasc": "221198"
-}
+- Cada filme possui um id, nome, descricao, data e o poster. Segue exemplo de um filme a ser adicionado:
+
+Poster:
 ```
+https://prod-ripcut-delivery.disney-plus.net/v1/variant/disney/3421528F5E3679CEA7D89FE51BE6DE6904289364AD148688A2E236A340144BF6/scale?width=1200&aspectRatio=1.78&format=webp
+```
+
+
+
+
 - Cada pagamento possui um id, ano, mês e o id do jogador a quem pertence o pagamento. Segue exemplo:
 ```
 {
