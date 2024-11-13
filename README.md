@@ -37,44 +37,17 @@
 ### Jogadores
 
 #### GET
-```/pagamento/jogadores/``` obter todos os jogadores, e seus respectivos pagamentos
-
-```/pagamento/jogadores/{id}``` obter um jogador por id
+```/filmes`` obter todos os jogadores, e seus respectivos pagamentos
 
 #### POST
 
-```/pagamento/jogadores/``` cadastrar novo jogador
+```/filmes``` cadastrar novo jogador
 
 #### PUT
 
-```/pagamento/jogadores/{id}``` editar um jogador por id
+```/filmes/:id``` editar um jogador por id
 
 #### DELETE
 
-```/pagamento/jogadores/{id}``` deletar um jogador por id
-
-```/pagamento/jogadores/``` deletar todos os jogadores
-
-### Pagamentos
-
-#### GET
-
-```/pagamento/pagamentos/``` obter todos os pagamentos
-
-```/pagamento/pagamentos/{id}``` obter um pagamento por id
-
-```/pagamento/pagamentos/ano/{ano}``` obter pagamentos por ano
-
-#### POST
-
-```/pagamento/pagamentos/``` cadastrar novo pagamento
-
-#### PUT
-
-```/pagamento/pagamentos/{id}``` editar um pagamento por id 
-
-#### DELETE
-
-```/pagamento/pagamentos/{id}``` deletar um pagamento por id
-
-```/pagamento/pagamentos/ ``` deletar todos os pagamentos
+```/filmes/:id``` deletar um jogador por id
+  
