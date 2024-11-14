@@ -6,75 +6,67 @@
 - Ricardo Santolaia  
 
 **Requisitos técnicos:**
-- Java 21 (ou superior)
+- Node.js v18.17.0 (ou superior)
+- Express 4.21.1 (ou superior)
+- React 18.3.1 (ou superior)
 - PostgreSQL
-- Spring Boot 3 (Spring Web MVC, Spring Data JPA, Developer Tools, PostgreSQL Driver)
-- Maven 3.8 (ou superior)
 
 **Requisitos de software:**
-- Cada jogador possui um id, título, e-mail e data de nascimento. Segue exemplo de do corpo de uma requisição em json:
-```exemplo do jogador:
-{
-  "nome": "claudio",
-  "email": "claudio@gmail.com",
-  "datanasc": "221198"
-}
+- Cada filme possui um id, nome, descricao, data e o poster. Segue exemplo de um filme a ser adicionado:
+
+Nome:
 ```
-- Cada pagamento possui um id, ano, mês e o id do jogador a quem pertence o pagamento. Segue exemplo:
+Iron Man
 ```
-{
-    "ano": 2023,
-    "mes": 10,
-    "valor": 100.0,
-    "jogador": {
-        "codJogador": 1
-    }
-}
+
+Descrição:
+```
+Superhero Movie
+```
+
+Data:
+```
+6/10/2010
+```
+
+Poster:
+```
+https://prod-ripcut-delivery.disney-plus.net/v1/variant/disney/3421528F5E3679CEA7D89FE51BE6DE6904289364AD148688A2E236A340144BF6/scale?width=1200&aspectRatio=1.78&format=webp
+```
+
+
+
+Crie umaa Database e use esse SQL
+
+```
+
+CREATE TABLE filmes (
+  id SERIAL PRIMARY KEY,
+  nome VARCHAR(255) NOT NULL,
+  descricao TEXT,
+  data DATE,
+  poster VARCHAR(255)
+);
+
+
 ```
 
 ## Descrição da API
 
-### Jogadores
+### Filmes
 
 #### GET
-```/pagamento/jogadores/``` obter todos os jogadores, e seus respectivos pagamentos
-
-```/pagamento/jogadores/{id}``` obter um jogador por id
+```/filmes``` obter todos os jogadores, e seus respectivos pagamentos
 
 #### POST
 
-```/pagamento/jogadores/``` cadastrar novo jogador
+```/filmes``` cadastrar novo jogador
 
 #### PUT
 
-```/pagamento/jogadores/{id}``` editar um jogador por id
+```/filmes/:id``` editar um jogador por id
 
 #### DELETE
 
-```/pagamento/jogadores/{id}``` deletar um jogador por id
-
-```/pagamento/jogadores/``` deletar todos os jogadores
-
-### Pagamentos
-
-#### GET
-
-```/pagamento/pagamentos/``` obter todos os pagamentos
-
-```/pagamento/pagamentos/{id}``` obter um pagamento por id
-
-```/pagamento/pagamentos/ano/{ano}``` obter pagamentos por ano
-
-#### POST
-
-```/pagamento/pagamentos/``` cadastrar novo pagamento
-
-#### PUT
-
-```/pagamento/pagamentos/{id}``` editar um pagamento por id 
-
-#### DELETE
-
-```/pagamento/pagamentos/{id}``` deletar um pagamento por id
-
-```/pagamento/pagamentos/ ``` deletar todos os pagamentos
+```/filmes/:id``` deletar um jogador por id
+  
